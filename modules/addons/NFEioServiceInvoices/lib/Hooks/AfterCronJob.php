@@ -46,6 +46,26 @@ class AfterCronJob
         // atualiza a data da ultima cron
         $storage->set('last_cron', $dataAtual);
 
+        try {
+            $monitor = new \NFEioServiceInvoices\Monitoring\UnissuedInvoiceMonitor();
+            $retrySummary = $monitor->runDueRetries();
+            if (!empty($retrySummary['processed'])) {
+                logModuleCall(
+                    'nfeio_serviceinvoices',
+                    'telegram_monitor_retries',
+                    ['schedule' => 'AfterCronJob'],
+                    $retrySummary
+                );
+            }
+        } catch (\Throwable $exception) {
+            logModuleCall(
+                'nfeio_serviceinvoices',
+                'telegram_monitor_retries_error',
+                ['schedule' => 'AfterCronJob'],
+                ['error' => get_class($exception) . ': ' . $exception->getMessage()]
+            );
+        }
+
         $hasNfWaiting = Capsule::table($serviceInvoicesTable)->whereBetween('created_at', [$initialDate, $dataAtual])->where('status', '=', 'Waiting')->count();
         logModuleCall(
             'nfeio_serviceinvoices',

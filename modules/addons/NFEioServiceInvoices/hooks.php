@@ -24,6 +24,39 @@ if (!defined('DS')) {
 
 require_once __DIR__ . DS . 'Loader.php';
 
+add_hook(
+    'AddonModuleConfigSave',
+    1,
+    function ($vars) {
+        try {
+            $configuration = new \NFEioServiceInvoices\Configuration();
+            $settings = new \NFEioServiceInvoices\Monitoring\ModuleSettings(
+                $configuration->getStorageKey()
+            );
+            $result = $settings->captureEncryptedSecret(
+                'telegram_bot_token',
+                'telegram_bot_token_encrypted'
+            );
+
+            if (($result['status'] ?? '') === 'error') {
+                logModuleCall(
+                    'nfeio_serviceinvoices',
+                    'telegram_monitor_secret_storage_error',
+                    ['hook' => 'AddonModuleConfigSave'],
+                    $result
+                );
+            }
+        } catch (\Throwable $exception) {
+            logModuleCall(
+                'nfeio_serviceinvoices',
+                'telegram_monitor_secret_storage_error',
+                ['hook' => 'AddonModuleConfigSave'],
+                ['error' => get_class($exception) . ': ' . $exception->getMessage()]
+            );
+        }
+    }
+);
+
 
 add_hook(
     'InvoiceCreation',

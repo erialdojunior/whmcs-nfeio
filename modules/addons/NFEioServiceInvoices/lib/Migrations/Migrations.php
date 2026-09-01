@@ -516,4 +516,96 @@ class Migrations
             }
         }
     }
+
+    /**
+     * Creates the audit and deduplication table used by the Telegram monitor.
+     * The migration is idempotent and intentionally has no foreign keys so it
+     * cannot interfere with WHMCS invoice retention operations.
+     *
+     * @return void
+     * @since 3.3.1.1
+     */
+    public static function createInvoiceMonitorAlertsTable()
+    {
+        $tableName = 'mod_nfeio_si_monitor_alerts';
+        $schema = Capsule::schema();
+
+        if ($schema->hasTable($tableName)) {
+            return;
+        }
+
+        try {
+            $schema->create($tableName, function ($table) {
+                $table->increments('id');
+                $table->unsignedInteger('invoice_id')->unique();
+                $table->unsignedInteger('client_id')->index();
+                $table->string('client_name', 191);
+                $table->dateTime('paid_at');
+                $table->string('last_nf_status', 64)->nullable();
+                $table->string('last_flow_status', 191)->nullable();
+                $table->string('status', 32)->default('pending')->index();
+                $table->unsignedTinyInteger('attempts')->default(0);
+                $table->dateTime('last_attempt_at')->nullable();
+                $table->dateTime('next_retry_at')->nullable()->index();
+                $table->dateTime('notified_at')->nullable();
+                $table->dateTime('resolved_at')->nullable();
+                $table->text('last_error')->nullable();
+                $table->dateTime('created_at');
+                $table->dateTime('updated_at');
+            });
+        } catch (\Throwable $exception) {
+            // A concurrent activation may have created the table first.
+            if (!$schema->hasTable($tableName)) {
+                throw $exception;
+            }
+        }
+    }
+
+    /**
+     * Adds the lookup indexes used by the monitor to legacy module tables.
+     *
+     * @return void
+     * @since 3.3.1.1
+     */
+    public static function createInvoiceMonitorSupportIndexes()
+    {
+        self::createIndexIfMissing(
+            'mod_nfeio_si_serviceinvoices',
+            'idx_nfeio_si_invoice_status',
+            ['invoice_id', 'status']
+        );
+        self::createIndexIfMissing(
+            'mod_nfeio_si_custom_configs',
+            'idx_nfeio_si_client_config_lookup',
+            ['client_id', 'key']
+        );
+    }
+
+    private static function createIndexIfMissing($tableName, $indexName, array $columns)
+    {
+        $schema = Capsule::schema();
+        if (!$schema->hasTable($tableName) || self::indexExists($tableName, $indexName)) {
+            return;
+        }
+
+        try {
+            $schema->table($tableName, function ($table) use ($indexName, $columns) {
+                $table->index($columns, $indexName);
+            });
+        } catch (\Throwable $exception) {
+            if (!self::indexExists($tableName, $indexName)) {
+                throw $exception;
+            }
+        }
+    }
+
+    private static function indexExists($tableName, $indexName)
+    {
+        $indexes = Capsule::select(
+            'SHOW INDEX FROM ' . $tableName . ' WHERE Key_name = ?',
+            [$indexName]
+        );
+
+        return !empty($indexes);
+    }
 }

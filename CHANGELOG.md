@@ -1,3 +1,10 @@
+## v3.3.1.1
+- Adiciona monitor diário de faturas pagas há mais de 24 horas sem NFS-e emitida.
+- Envia alertas pelo Telegram com deduplicação e auditoria por fatura.
+- Em falhas de entrega, realiza até três retries com intervalo de uma hora.
+- Mantém o token do bot criptografado em repouso usando a criptografia nativa do WHMCS.
+- Adiciona índices de suporte para manter a consulta diária eficiente conforme o histórico cresce.
+
 ## v3.3.1
 Esta versão corrige a emissão de NFS-e, que passou a falhar com `415 Unsupported Media Type` a partir de 24/07/2026.
 
