@@ -1,3 +1,7 @@
+## v3.3.1.2
+- Corrige a migração do token do Telegram para o armazenamento criptografado no WHMCS 8.7.
+- Substituições futuras do token são migradas e o campo original é limpo no primeiro uso.
+
 ## v3.3.1.1
 - Adiciona monitor diário de faturas pagas há mais de 24 horas sem NFS-e emitida.
 - Envia alertas pelo Telegram com deduplicação e auditoria por fatura.

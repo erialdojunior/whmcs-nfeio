@@ -105,11 +105,22 @@ class ModuleSettings
     }
 
     /**
-     * Decrypts an internal secret through the WHMCS Local API. The input field
-     * fallback permits a safe transition before the first configuration save.
+     * Decrypts an internal secret through the WHMCS Local API. A plaintext
+     * input left by older WHMCS versions is migrated transactionally before it
+     * is returned to the caller.
      */
     public function getEncryptedSecret($storedKey, $inputKey)
     {
+        $inputValue = trim((string) $this->get($inputKey, ''));
+        if ($inputValue !== '') {
+            $captureResult = $this->captureEncryptedSecret($inputKey, $storedKey);
+            if (($captureResult['status'] ?? '') !== 'stored') {
+                return '';
+            }
+
+            return $inputValue;
+        }
+
         $storedValue = trim((string) $this->storage->get($storedKey));
         if (strpos($storedValue, self::ENCRYPTED_PREFIX) === 0 && function_exists('localAPI')) {
             $cipherText = substr($storedValue, strlen(self::ENCRYPTED_PREFIX));
@@ -121,7 +132,7 @@ class ModuleSettings
             return '';
         }
 
-        return (string) $this->get($inputKey, '');
+        return '';
     }
 
     /**
