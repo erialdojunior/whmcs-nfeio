@@ -1,0 +1,12 @@
+# PRs de atualização exigem revisão; não habilita merge ou deploy automático.
+# Major e correções de segurança ficam fora dos grupos de versões abaixo.
+version: 2
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Fortaleza"
+    open-pull-requests-limit: 3
