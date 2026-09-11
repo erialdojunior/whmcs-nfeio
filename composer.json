@@ -2,7 +2,7 @@
   "require": {
     "whmcsexpert/whmcsexpert": "1.1.7",
     "plasticbrain/php-flash-messages": "~1",
-    "guzzlehttp/psr7": "~1.9",
+    "guzzlehttp/psr7": "~2.12",
     "ext-curl": "*",
     "php": ">=7.4",
     "nfe/nfe": "^2.5",
