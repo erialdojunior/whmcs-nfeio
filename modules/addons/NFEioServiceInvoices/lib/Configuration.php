@@ -22,7 +22,7 @@ final class Configuration extends \WHMCSExpert\mtLibs\process\AbstractConfigurat
 
     private $encryptHash = '';
 
-    public $version = '3.3.1';
+    public $version = '3.3.1.2';
 
     public $tablePrefix = 'mod_nfeio_si_';
 
@@ -155,6 +155,24 @@ final class Configuration extends \WHMCSExpert\mtLibs\process\AbstractConfigurat
                 'Default' => 'yes',
                 'Description' => 'Habilitar o módulo em modo depuração (debug).',
             ],
+            'telegram_monitor_enabled' => [
+                'FriendlyName' => 'Monitor de NFS-e no Telegram',
+                'Type' => 'yesno',
+                'Default' => '',
+                'Description' => 'Alertar diariamente sobre faturas pagas há mais de 24 horas sem NFS-e emitida.',
+            ],
+            'telegram_bot_token' => [
+                'FriendlyName' => 'Token do bot Telegram',
+                'Type' => 'password',
+                'Size' => '50',
+                'Description' => 'Informe para cadastrar ou substituir. Após salvar, o campo volta vazio e o token permanece criptografado.',
+            ],
+            'telegram_chat_id' => [
+                'FriendlyName' => 'Chat ID do Telegram',
+                'Type' => 'text',
+                'Size' => '25',
+                'Description' => 'ID numérico do usuário, grupo ou supergrupo que receberá os alertas.',
+            ],
         ];
     }
 
@@ -253,6 +271,9 @@ final class Configuration extends \WHMCSExpert\mtLibs\process\AbstractConfigurat
         // inicia tabela de associacao de client a company_id
         $clientCompanyRepository = new Models\ClientCompany\Repository();
         $clientCompanyRepository->createTable();
+
+        // v3.3.1.1
+        $this->initializeInvoiceMonitor();
     }
 
     public function deactivate()
@@ -397,6 +418,22 @@ final class Configuration extends \WHMCSExpert\mtLibs\process\AbstractConfigurat
                 'cofins_amount' => $amountCol,
                 'taxation_type' => $taxationCol,
             ]);
+        }
+
+        // v3.3.1.1 — monitor de faturas pagas sem NFS-e emitida
+        if (version_compare($currentlyInstalledVersion, '3.3.1.1', 'lt')) {
+            $this->initializeInvoiceMonitor();
+        }
+    }
+
+    private function initializeInvoiceMonitor()
+    {
+        \NFEioServiceInvoices\Migrations\Migrations::createInvoiceMonitorAlertsTable();
+        \NFEioServiceInvoices\Migrations\Migrations::createInvoiceMonitorSupportIndexes();
+
+        $storage = new \WHMCSExpert\Addon\Storage($this->getStorageKey());
+        if (empty($storage->get('telegram_monitor_started_at'))) {
+            $storage->set('telegram_monitor_started_at', date('Y-m-d H:i:s'));
         }
     }
 }

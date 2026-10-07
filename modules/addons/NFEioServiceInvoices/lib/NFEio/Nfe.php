@@ -208,6 +208,33 @@ class Nfe
     }
 
     /**
+     * Fetches one service invoice from NFE.io using the module credentials.
+     *
+     * Keeping authentication inside this service prevents monitoring code from
+     * reading or duplicating API secrets.
+     *
+     * @param string $companyId
+     * @param string $nfeId
+     * @return object
+     */
+    public function fetchServiceInvoice($companyId, $nfeId)
+    {
+        if (empty($companyId) || empty($nfeId) || $nfeId === 'waiting') {
+            throw new \InvalidArgumentException('Invalid service invoice identifiers.');
+        }
+
+        $this->apiAuth();
+        $response = \NFe_ServiceInvoice::fetch($companyId, $nfeId);
+        $attributes = $response->getAttributes();
+
+        if (!is_array($attributes) || empty($attributes['id'])) {
+            throw new \RuntimeException('Invalid service invoice response.');
+        }
+
+        return (object) $attributes;
+    }
+
+    /**
      * Prepara o item para ser transmitido
      *
      * @param  $userId      int ID do cliente
@@ -655,6 +682,9 @@ class Nfe
         $companyId = $data->company_id;
         $description = $data->nfe_description;
         $environment = $data->environment;
+        $paymentDate = Capsule::table('tblinvoices')
+            ->where('id', '=', $invoiceId)
+            ->value('datepaid');
         $clientData = \WHMCS\User\Client::find($clientId);
         $customer = $this->legacyFunctions->gnfe_customer($clientId, $clientData);
         $emailNfeConfig = (bool)$this->storage->get('gnfe_email_nfe_config');
@@ -735,6 +765,16 @@ class Nfe
                 'classCode' => !empty($classCode) ? $classCode : null,
             ]
         ];
+
+        // Keep the fiscal accrual date aligned with the effective payment date,
+        // including delayed or recovered emissions.
+        if (!empty($paymentDate) && $paymentDate !== '0000-00-00 00:00:00') {
+            $paymentTimestamp = strtotime((string) $paymentDate);
+
+            if ($paymentTimestamp !== false) {
+                $postData['accrualOn'] = date('Y-m-d', $paymentTimestamp);
+            }
+        }
 
         // adiciona o campo issAmountWithheld caso exista valor
         if (!empty($issAmountWithheld)) {

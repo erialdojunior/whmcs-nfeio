@@ -85,5 +85,23 @@ class DailyCronJob
                 }
             }
         }
+
+        try {
+            $monitor = new \NFEioServiceInvoices\Monitoring\UnissuedInvoiceMonitor();
+            $summary = $monitor->runDailyScan();
+            logModuleCall(
+                'nfeio_serviceinvoices',
+                'telegram_monitor_daily_scan',
+                ['schedule' => 'DailyCronJob'],
+                $summary
+            );
+        } catch (\Throwable $exception) {
+            logModuleCall(
+                'nfeio_serviceinvoices',
+                'telegram_monitor_daily_scan_error',
+                ['schedule' => 'DailyCronJob'],
+                ['error' => get_class($exception) . ': ' . $exception->getMessage()]
+            );
+        }
     }
 }
