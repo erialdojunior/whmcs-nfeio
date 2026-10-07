@@ -1,6 +1,6 @@
 {
   "require": {
-    "whmcsexpert/whmcsexpert": "1.1.7",
+    "whmcsexpert/whmcsexpert": "1.1.8",
     "plasticbrain/php-flash-messages": "~1",
     "guzzlehttp/psr7": "^2.12.3",
     "ext-curl": "*",

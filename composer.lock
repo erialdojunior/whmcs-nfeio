@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6580d9ad0fc5ae04ea34014e068de366",
+    "content-hash": "a51760753dd9180e7390b80e30d76a7a",
     "packages": [
         {
             "name": "guzzlehttp/psr7",
@@ -535,22 +535,21 @@
         },
         {
             "name": "whmcsexpert/whmcsexpert",
-            "version": "v1.1.7",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/whmcsexpert/whmcsexpert.git",
-                "reference": "bea1112fe3974b424fdb7223139cb33dd4cc0856"
+                "reference": "561c88f64cbeb669098c6a28da9bbe985478f48b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/whmcsexpert/whmcsexpert/zipball/bea1112fe3974b424fdb7223139cb33dd4cc0856",
-                "reference": "bea1112fe3974b424fdb7223139cb33dd4cc0856",
+                "url": "https://api.github.com/repos/whmcsexpert/whmcsexpert/zipball/561c88f64cbeb669098c6a28da9bbe985478f48b",
+                "reference": "561c88f64cbeb669098c6a28da9bbe985478f48b",
                 "shasum": ""
             },
             "require-dev": {
-                "illuminate/database": "v5.8.36",
+                "illuminate/database": "^v6.20",
                 "phpcompatibility/php-compatibility": "^9.3",
-                "phpdocumentor/phpdocumentor": "2.*",
                 "phpunit/phpunit": "@stable",
                 "squizlabs/php_codesniffer": "^3.7"
             },
@@ -573,9 +572,9 @@
             "description": "WHMCS Expert Library",
             "support": {
                 "issues": "https://github.com/whmcsexpert/whmcsexpert/issues",
-                "source": "https://github.com/whmcsexpert/whmcsexpert/tree/v1.1.7"
+                "source": "https://github.com/whmcsexpert/whmcsexpert/tree/v1.1.8"
             },
-            "time": "2023-03-15T18:58:31+00:00"
+            "time": "2024-04-09T15:22:26+00:00"
         }
     ],
     "packages-dev": [
