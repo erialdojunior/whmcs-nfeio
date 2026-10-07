@@ -7,7 +7,8 @@ $baseDir = dirname(dirname(dirname(dirname(dirname($vendorDir)))));
 
 return array(
     'WHMCSExpert\\' => array($vendorDir . '/whmcsexpert/whmcsexpert/src/WHMCSExpert'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
+    'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'Plasticbrain\\FlashMessages\\' => array($vendorDir . '/plasticbrain/php-flash-messages/src'),
     'NFEioServiceInvoices\\' => array($baseDir . '/modules/addons/NFEioServiceInvoices/lib'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),

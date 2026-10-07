@@ -8,60 +8,73 @@ class ComposerStaticInita3ca861aaa7218216b529bfed0bc50e4
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'W' => 
+        'W' =>
         array (
             'WHMCSExpert\\' => 12,
         ),
-        'P' => 
+        'S' =>
+        array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
+        ),
+        'P' =>
         array (
             'Psr\\Http\\Message\\' => 17,
             'Plasticbrain\\FlashMessages\\' => 27,
         ),
-        'N' => 
+        'N' =>
         array (
             'NFEioServiceInvoices\\' => 21,
         ),
-        'G' => 
+        'G' =>
         array (
             'GuzzleHttp\\Psr7\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'WHMCSExpert\\' => 
+        'WHMCSExpert\\' =>
         array (
             0 => __DIR__ . '/..' . '/whmcsexpert/whmcsexpert/src/WHMCSExpert',
         ),
-        'Psr\\Http\\Message\\' => 
+        'Symfony\\Polyfill\\Php80\\' =>
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
-        'Plasticbrain\\FlashMessages\\' => 
+        'Psr\\Http\\Message\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Plasticbrain\\FlashMessages\\' =>
         array (
             0 => __DIR__ . '/..' . '/plasticbrain/php-flash-messages/src',
         ),
-        'NFEioServiceInvoices\\' => 
+        'NFEioServiceInvoices\\' =>
         array (
             0 => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib',
         ),
-        'GuzzleHttp\\Psr7\\' => 
+        'GuzzleHttp\\Psr7\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
     );
 
     public static $classMap = array (
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'GuzzleHttp\\Psr7\\AppendStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/AppendStream.php',
         'GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
         'GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
         'GuzzleHttp\\Psr7\\DroppingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/DroppingStream.php',
+        'GuzzleHttp\\Psr7\\Exception\\MalformedUriException' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Exception/MalformedUriException.php',
         'GuzzleHttp\\Psr7\\FnStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/FnStream.php',
         'GuzzleHttp\\Psr7\\Header' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Header.php',
+        'GuzzleHttp\\Psr7\\HttpFactory' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/HttpFactory.php',
         'GuzzleHttp\\Psr7\\InflateStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/InflateStream.php',
         'GuzzleHttp\\Psr7\\LazyOpenStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LazyOpenStream.php',
         'GuzzleHttp\\Psr7\\LimitStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LimitStream.php',
@@ -74,6 +87,7 @@ class ComposerStaticInita3ca861aaa7218216b529bfed0bc50e4
         'GuzzleHttp\\Psr7\\Query' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Query.php',
         'GuzzleHttp\\Psr7\\Request' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Request.php',
         'GuzzleHttp\\Psr7\\Response' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Response.php',
+        'GuzzleHttp\\Psr7\\Rfc3986' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc3986.php',
         'GuzzleHttp\\Psr7\\Rfc7230' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc7230.php',
         'GuzzleHttp\\Psr7\\ServerRequest' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/ServerRequest.php',
         'GuzzleHttp\\Psr7\\Stream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Stream.php',
@@ -93,6 +107,7 @@ class ComposerStaticInita3ca861aaa7218216b529bfed0bc50e4
         'NFEioServiceInvoices\\Configuration' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Configuration.php',
         'NFEioServiceInvoices\\CustomFields' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/CustomFields.php',
         'NFEioServiceInvoices\\Helpers\\Invoices' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Helpers/Invoices.php',
+        'NFEioServiceInvoices\\Helpers\\TaxationType' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Helpers/TaxationType.php',
         'NFEioServiceInvoices\\Helpers\\Timestamp' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Helpers/Timestamp.php',
         'NFEioServiceInvoices\\Helpers\\Validations' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Helpers/Validations.php',
         'NFEioServiceInvoices\\Helpers\\Versions' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Helpers/Versions.php',
@@ -112,6 +127,10 @@ class ComposerStaticInita3ca861aaa7218216b529bfed0bc50e4
         'NFEioServiceInvoices\\Models\\ModuleConfiguration\\Repository' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Models/ModuleConfiguration/Repository.php',
         'NFEioServiceInvoices\\Models\\ProductCode\\Repository' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Models/ProductCode/Repository.php',
         'NFEioServiceInvoices\\Models\\ServiceInvoices\\Repository' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Models/ServiceInvoices/Repository.php',
+        'NFEioServiceInvoices\\Monitoring\\ModuleSettings' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Monitoring/ModuleSettings.php',
+        'NFEioServiceInvoices\\Monitoring\\MonitorPolicy' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Monitoring/MonitorPolicy.php',
+        'NFEioServiceInvoices\\Monitoring\\TelegramNotifier' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Monitoring/TelegramNotifier.php',
+        'NFEioServiceInvoices\\Monitoring\\UnissuedInvoiceMonitor' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/Monitoring/UnissuedInvoiceMonitor.php',
         'NFEioServiceInvoices\\NFEio\\Nfe' => __DIR__ . '/../../../../../..' . '/modules/addons/NFEioServiceInvoices/lib/NFEio/Nfe.php',
         'NFeAuthenticationException' => __DIR__ . '/..' . '/nfe/nfe/lib/NFe/Error.php',
         'NFeException' => __DIR__ . '/..' . '/nfe/nfe/lib/NFe/Error.php',
@@ -129,14 +148,26 @@ class ComposerStaticInita3ca861aaa7218216b529bfed0bc50e4
         'NFe_Webhook' => __DIR__ . '/..' . '/nfe/nfe/lib/NFe/Webhook.php',
         'NFe_class_tools' => __DIR__ . '/..' . '/nfe/nfe/lib/NFe/Backward_Compatibility.php',
         'NFe_io' => __DIR__ . '/..' . '/nfe/nfe/lib/NFe/NFe.php',
+        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Plasticbrain\\FlashMessages\\FlashMessages' => __DIR__ . '/..' . '/plasticbrain/php-flash-messages/src/FlashMessages.php',
         'Psr\\Http\\Message\\MessageInterface' => __DIR__ . '/..' . '/psr/http-message/src/MessageInterface.php',
+        'Psr\\Http\\Message\\RequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/RequestFactoryInterface.php',
         'Psr\\Http\\Message\\RequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/RequestInterface.php',
+        'Psr\\Http\\Message\\ResponseFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ResponseFactoryInterface.php',
         'Psr\\Http\\Message\\ResponseInterface' => __DIR__ . '/..' . '/psr/http-message/src/ResponseInterface.php',
+        'Psr\\Http\\Message\\ServerRequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ServerRequestFactoryInterface.php',
         'Psr\\Http\\Message\\ServerRequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/ServerRequestInterface.php',
+        'Psr\\Http\\Message\\StreamFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/StreamFactoryInterface.php',
         'Psr\\Http\\Message\\StreamInterface' => __DIR__ . '/..' . '/psr/http-message/src/StreamInterface.php',
+        'Psr\\Http\\Message\\UploadedFileFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UploadedFileFactoryInterface.php',
         'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
+        'Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
+        'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
+        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'WHMCSExpert\\Addon\\Storage' => __DIR__ . '/..' . '/whmcsexpert/whmcsexpert/src/WHMCSExpert/Addon/Storage.php',
         'WHMCSExpert\\Gateway\\GatewayStorage' => __DIR__ . '/..' . '/whmcsexpert/whmcsexpert/src/WHMCSExpert/Gateway/GatewayStorage.php',
         'WHMCSExpert\\Helper\\Helper' => __DIR__ . '/..' . '/whmcsexpert/whmcsexpert/src/WHMCSExpert/Helper/Helper.php',

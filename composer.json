@@ -2,23 +2,26 @@
   "require": {
     "whmcsexpert/whmcsexpert": "1.1.7",
     "plasticbrain/php-flash-messages": "~1",
-    "guzzlehttp/psr7": "~1.9",
+    "guzzlehttp/psr7": "^2.12.3",
     "ext-curl": "*",
     "php": ">=7.4",
     "nfe/nfe": "^2.5",
     "ext-json": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "@stable",
+    "phpunit/phpunit": "^9.6.33",
     "kint-php/kint": "5.1.1",
     "tracy/tracy": "v2.9.8",
     "phpmetrics/phpmetrics": "v2.8.2",
     "illuminate/database": "v6.20.44",
-    "squizlabs/php_codesniffer": "3.10.3"
+    "squizlabs/php_codesniffer": "3.13.6"
   },
   "config": {
     "vendor-dir": "modules/addons/NFEioServiceInvoices/lib/vendor",
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.4.0"
+    }
   },
   "autoload": {
     "psr-4": {
