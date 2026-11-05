@@ -8,7 +8,13 @@ if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
 
-require_once __DIR__ . DS . 'lib' . DS . 'vendor' . DS . 'autoload.php';
+// Preserve the host application's PSR/Guzzle versions. The addon's Composer
+// loader remains available for NFe and WHMCSExpert classes, but must not
+// shadow WHMCS dependencies used by its mail importer.
+$nfeioComposerLoader = require __DIR__ . DS . 'lib' . DS . 'vendor' . DS . 'autoload.php';
+$nfeioComposerLoader->unregister();
+$nfeioComposerLoader->register(false);
+unset($nfeioComposerLoader);
 
 
 /**

@@ -22,7 +22,7 @@ final class Configuration extends \WHMCSExpert\mtLibs\process\AbstractConfigurat
 
     private $encryptHash = '';
 
-    public $version = '3.3.1.2';
+    public $version = '3.4.0';
 
     public $tablePrefix = 'mod_nfeio_si_';
 
@@ -159,7 +159,7 @@ final class Configuration extends \WHMCSExpert\mtLibs\process\AbstractConfigurat
                 'FriendlyName' => 'Monitor de NFS-e no Telegram',
                 'Type' => 'yesno',
                 'Default' => '',
-                'Description' => 'Alertar diariamente sobre faturas pagas há mais de 24 horas sem NFS-e emitida.',
+                'Description' => 'Alertar diariamente sobre faturas pagas até o dia anterior sem NFS-e emitida.',
             ],
             'telegram_bot_token' => [
                 'FriendlyName' => 'Token do bot Telegram',
