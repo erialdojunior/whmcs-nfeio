@@ -50,7 +50,8 @@ class UnissuedInvoiceMonitor
 
         return $this->withLock('daily_scan', function () {
             $startedAt = $this->monitorStartedAt();
-            $cutoff = date('Y-m-d H:i:s', time() - 86400);
+            // Include payments before today's local midnight and older backlog.
+            $cutoff = date('Y-m-d 00:00:00');
             $moduleRule = $this->settings->get('issue_note_default_cond', '');
             $issueAfterDays = (int) $this->settings->get('issue_note_after', 0);
 
@@ -105,7 +106,7 @@ class UnissuedInvoiceMonitor
             ->where('invoice.total', '>', 0)
             ->whereNotNull('invoice.datepaid')
             ->where('invoice.datepaid', '>=', $startedAt)
-            ->where('invoice.datepaid', '<=', $cutoff)
+            ->where('invoice.datepaid', '<', $cutoff)
             ->whereNotExists(function ($query) {
                 $query->select(Capsule::raw(1))
                     ->from(self::INVOICES_TABLE . ' as issued')
@@ -380,7 +381,7 @@ class UnissuedInvoiceMonitor
             . '<b>Fatura:</b> #' . (int) $alert->invoice_id . "\n"
             . '<b>Pagamento:</b> ' . $this->escape($paidAt) . "\n"
             . '<b>Situação:</b> ' . $this->escape($situation) . "\n"
-            . 'Mais de 24 horas após o pagamento sem emissão confirmada.';
+            . 'Pagamento realizado até o dia anterior, sem emissão confirmada.';
     }
 
     private function escape($value)

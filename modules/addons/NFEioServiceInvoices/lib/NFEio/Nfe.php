@@ -766,6 +766,13 @@ class Nfe
             ]
         ];
 
+        // Preserve the municipal service code and provide its explicit
+        // national counterpart (LC 116 item 1.07) for the National issuer.
+        // Do not infer mappings for other municipal services.
+        if ((string) $serviceCode === '620910001') {
+            $postData['federalServiceCode'] = '010701';
+        }
+
         // Keep the fiscal accrual date aligned with the effective payment date,
         // including delayed or recovered emissions.
         if (!empty($paymentDate) && $paymentDate !== '0000-00-00 00:00:00') {
